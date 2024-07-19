@@ -1,7 +1,8 @@
-FROM node:18.17.0
+FROM node:20.13.1
 WORKDIR /app/user/cake
 
 COPY package*.json ./
+VOLUME .:/app/user/cake
 RUN npm install
 
 COPY . .
