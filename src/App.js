@@ -6,12 +6,6 @@ function App(){
   useEffect(() => {
     userLogin('','')
  });
-//  const handleEmail=(e)=>{
-//   setEmail(e.target.value);
-//  }
-//  const handlePassword=(e)=>{
-//   setPassword(e.target.value);
-//  }
   const userLogin = async (em, psw)=> {
     await axios({
         url: 'https://hip-garfish-presently.ngrok-free.app/graphql/login/',
@@ -22,8 +16,8 @@ function App(){
         data: {
             query: `mutation {
           loginUser(
-              email: "${em}",
-              password: "${psw}"
+              email: "anwar@gmail.com",
+              password: "hidden"
           )
           {
             user {
@@ -36,14 +30,14 @@ function App(){
     }).then((result) => {
 
 
-        if (result.data.errors) { //tells it is not looged in
+        if (result.data.errors) { 
 
              console.log('not logged in')
-        } else { //tells it is logged in
+        } else { 
             let token = result.data.data.loginUser.token
             localStorage.setItem("userToken", token)
-            // localStorage.getItem("userToken", token)
-          console.log(token)
+            localStorage.getItem("userToken", token)
+           console.log(token)
 
         }
 
@@ -51,19 +45,19 @@ function App(){
 
     });
   }
-  const HandleLogin = async(e)=>{
-    e.preventdefault();
-    await userLogin(email,password)
-  }
-return(
-  <div>
-     <form onSubmit={HandleLogin}>
-    <input type='text' id='email' placeholder='Enter E-mail' value={email} onChange={(e)=>setEmail(e.target.value)} />
-    <input type='password' id='password' placeholder='Enter password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
-    <button type='submit'>Submit</button>
-    </form>
-  </div>
-);
+  // const HandleLogin = async(e)=>{
+  //   e.preventdefault();
+  //   await userLogin(email,password)
+  // }
+// return(
+//   <div>
+//      <form onSubmit={HandleLogin}>
+//     <input type='text' id='email' placeholder='Enter E-mail' value={email} onChange={(e)=>setEmail(e.target.value)} />
+//     <input type='password' id='password' placeholder='Enter password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+//     <button type='submit'>Submit</button>
+//     </form>
+//   </div>
+// );
 }
 
 export default App;
