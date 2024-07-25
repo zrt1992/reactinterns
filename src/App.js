@@ -11,13 +11,14 @@ function App(){
         url: 'https://hip-garfish-presently.ngrok-free.app/graphql/login/',
         method: 'post',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*'
         },
         data: {
             query: `mutation {
           loginUser(
-              email: "anwar@gmail.com",
-              password: "hidden"
+              email: "roger.rice@blanda.biz",
+              password: "secret"
           )
           {
             user {
