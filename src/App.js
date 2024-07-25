@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 function App(){
@@ -59,6 +60,18 @@ function App(){
 //     </form>
 //   </div>
 // );
+=======
+import './App.css';
+import Login from './components/Login';
+
+function App() {
+  return (
+    <>
+    <Login />
+    </>
+
+  );
+>>>>>>> 4fb078b0d2dd9fd3d4d99ead28cbf48c384243d7
 }
 
 export default App;
