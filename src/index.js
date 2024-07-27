@@ -11,6 +11,13 @@ root.render(
   </React.StrictMode>
 );
 
+// const { createProxyMiddleware } = require('http-proxy-middleware');
+
+// app.use('/api', createProxyMiddleware({
+//     target: 'https://hip-garfish-presently.ngrok-free.app',
+//     changeOrigin: true
+// }));
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
