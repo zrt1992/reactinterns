@@ -1,37 +1,22 @@
-// import { useState, useEffect } from 'react';
+import React,{useState } from 'react';
 import axios from 'axios';
+import './Userinfo.css'
 const Userinfo = () => { 
-
-    // const [email, setEmail] = useState('');    
-    // const [password, setPassword] = useState('');
-    // const [errorMessage, setErrorMessage] = useState(''); 
-    // const [token, setToken]=useState(); 
-     useEffect(() => {
-        userProfile('','')
-     });
-      const userProfile = async (email, password) => {
+    const [email, setEmail] = useState('');    
+    const [password, setPassword] = useState('');
+//  useEffect(() => {
+//         PrintToken('','')
+//      });
+      const PrintToken =async (email, password) => {
         await axios({
             url: 'https://hip-garfish-presently.ngrok-free.app/graphql/user',
             method: 'post',
            
             data: {
-            //     query: `mutation {
-            //   loginUser(
-            //       email: "roger.rice@blanda.biz",
-            //       password: "secret"
-            //   )
-            //   {
-            //     user {
-            //           email,
-            //       }
-            //       token
-            //   }
-            //   }`
-
-            query :`MyQuery {
+             query :`MyQuery {
                 users(id: 10) {
-                  email:"roger.rice@blanda.biz",
-                  name: "secret"
+                  email:"${email}",
+                  name: "${password}"
                   articles{
                       title
                   }
@@ -39,68 +24,49 @@ const Userinfo = () => {
               }`
             },
             headers: {
-                'Content-Type' : 'application/json',
                 'Accept': 'application/json',
-                'Authorization' : `bearer ${localStorage.getItem(token)}`
+                'Authorization' : `bearer ${localStorage.getItem('bearer')}`
             }
         }).then((result) => {
-            //  console.log(result)
-            if (result.data.errors) { //tells it is not looged in
-                console.log('Login failed');
-            } else { //tells it is logged in
-            console.log(result); 
-                // console.log(token);
-            //   localStorage.setItem('bearer',token)
-            //   localStorage.getItem('bearer',token)
-              
-            }
-    
-        }).catch((error) => {
-            console.error('Login error occurred:', error);
-            // setErrorMessage('Login error occurred. Please try again.');
-            // console.log(errorMessage)
-        });
-
+         localStorage.getItem('bearer')?
+          console.log(result.data):
+          console.log('invalid user')
+     }).catch((error)=>{
+             console.log("invalid User",error)
+     });
     }
-        // const handleLogin = async (e) => {
-        //     e.preventDefault();
-        //     setErrorMessage('');
+         const handleProfile =  (e) => {
+             e.preventDefault();
+              PrintToken(email, password);
+         }
 
-        //     await userLogin(email, password);
-        // }
+     return(
+         <div className='container'>
+             <h1>Show User information</h1>
+             <form onSubmit={handleProfile}>
+             <label htmlFor="email">Email</label>
+                  <input
+                      type="text"
+                      id="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                  />
 
-    // return(
-    //     <>
-    //     <div className='container'>
-    //         <h1>login</h1>
-    //         <form onSubmit={handleLogin}>
-    //         <label htmlFor="email">Email</label>
-    //              <input
-    //                  type="text"
-    //                  id="email"
-    //                  placeholder="Email"
-    //                  value={email}
-    //                  onChange={(e) => setEmail(e.target.value)}
-    //                  required
-    //              />
+             <label htmlFor="password">Password</label>
+                  <input
+                      type="password"
+                      id="password"
+                      placeholder="Password"
+                     value={password}
+                   onChange={(e) => setPassword(e.target.value)}
+                     required
+              />
 
-    //         <label htmlFor="password">Password</label>
-    //              <input
-    //                  type="password"
-    //                  id="password"
-    //                  placeholder="Password"
-    //                  value={password}
-    //                  onChange={(e) => setPassword(e.target.value)}
-    //                  required
-    //              />
-
-    //         <button type="submit">Login</button>
-    //         </form>
-    //         {errorMessage && <h2>{errorMessage}</h2>}
-    //     </div>
-
-    //     </>
-    // )
+            <button type="submit">Show Data</button>
+            </form>
+        </div>
+     )
   };
-
 export default Userinfo;

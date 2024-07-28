@@ -1,38 +1,45 @@
-.App {
-  text-align: center;
+/* App.css */
+
+/* Apply a basic reset for margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Style the main container */
+div {
+  font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Style the heading */
+h1 {
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Style for navigation links */
+a {
+  text-decoration: none;
+  color: #007BFF;
+  font-size: 18px;
+  margin-right: 15px;
+  transition: color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+/* Hover effect for links */
+a:hover {
+  color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style for the layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Add some spacing between elements */
+div > div {
+  margin-bottom: 15px;
 }
