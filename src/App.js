@@ -1,3 +1,4 @@
+
 import User from './components/User';
 import Userinfo from './components/Userinfo';
 import { BrowserRouter, Routes, Route,NavLink } from 'react-router-dom'
@@ -22,7 +23,11 @@ function App() {
 
     )
 
+
+
 };
+
+
 
 
 
