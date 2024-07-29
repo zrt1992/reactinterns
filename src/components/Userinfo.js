@@ -13,19 +13,19 @@ const Userinfo = () => {
             method: 'post',
            
             data: {
-             query :`MyQuery {
-                users(id: 10) {
-                  email:"${email}",
-                  name: "${password}"
-                  articles{
-                      title
-                  }
-                }
-              }`
+             query :`query MyQuery {
+  users(id: 10) {
+    email
+    name
+    articles{
+        title
+    }
+  }
+}`
             },
             headers: {
                 'Accept': 'application/json',
-                'Authorization' : `bearer ${localStorage.getItem('bearer')}`
+                'Authorization' : `Bearer `+ localStorage.getItem('bearer')
             }
         }).then((result) => {
          localStorage.getItem('bearer')?
