@@ -1,36 +1,34 @@
-
 import User from './components/User';
 import Userinfo from './components/Userinfo';
-import { BrowserRouter, Routes, Route,NavLink } from 'react-router-dom'
+import {BrowserRouter, Routes, Route, NavLink} from 'react-router-dom'
 import './App.css'
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import Child1 from "./Child1";
+import Child2 from "./Child2";
+import Test from "./Test";
+
 function App() {
+    useEffect(() => {
+        console.log("parent called")
+    }, [])
+    const [parent, setParent] = useState(1)
+    const [number, setNumber] = useState(1)
+    const [countriesState, setCountriesState] = useState([])
     return (
-        <>
-        <BrowserRouter>
-            <div className='container'>
-                <h1>API Calls</h1>
-                <div><NavLink to={'/'} className={'link-container'} id='a'>login </NavLink></div>
-                <div><NavLink to={'/userinfo'} className={'link-container'} id='a'>Show information</NavLink></div>
-                <Routes>
-                    <Route path='/' element={<User/>} />
-                    <Route path='/userinfo' element={<Userinfo/>} />
-                </Routes>
-
+        <div>
+            <div>
+                <Child1 state={parent} changeparent={setParent} countriesState={countriesState}
+                        setCountriesState={setCountriesState}/>
             </div>
-        </BrowserRouter>
-        </>
+            <div>
 
+                <Child2 state={parent} changeparent={setParent} countriesState={countriesState}
+                        setCountriesState={setCountriesState}/>
+            </div>
+           <div>
+               <Test/>
+           </div>
+        </div>
     )
-
-
-
 };
-
-
-
-
-
-
-
 export default App;
